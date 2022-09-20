@@ -6,23 +6,30 @@ import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const pokemonListUrl = await (
-    await fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
-  ).json();
+  // const pokemonListUrl = await (
+  //   await fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
+  // ).json();
 
-  const promisesDetailPokemons = (pokemonListUrl.results ?? []).map(
-    (item: any) => fetch(item.url)
-  );
+  // const promisesDetailPokemons = (pokemonListUrl.results ?? []).map(
+  //   (item: any) => fetch(item.url)
+  // );
 
-  const resultDetailPokemons = await Promise.all([...promisesDetailPokemons]);
-  const promisesJsonDetailPokemons = resultDetailPokemons.map((res) =>
-    res.json()
-  );
-  const pokemons = await Promise.all([...promisesJsonDetailPokemons]);
+  // const resultDetailPokemons = await Promise.all([...promisesDetailPokemons]);
+  // const promisesJsonDetailPokemons = resultDetailPokemons.map((res) =>
+  //   res.json()
+  // );
+  // const pokemons = await Promise.all([...promisesJsonDetailPokemons]);
+
+  // return {
+  //   props: {
+  //     pokemons,
+  //   },
+  // };
 
   return {
-    props: {
-      pokemons,
+    redirect: {
+      destination: '/courses',
+      permanent: false,
     },
   };
 };
